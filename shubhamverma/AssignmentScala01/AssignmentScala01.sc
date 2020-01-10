@@ -25,7 +25,7 @@ def findMax(list: List[Int]): Int =  if(list.isEmpty) 0 else list.foldLeft(0)((c
 
 def getFibo(n: Int) = (1 to n).toList.foldLeft((1, 0)){
 	case ((ele, previous), a) => (ele + previous, ele)
-}
+}._1
 
 // Problem 4 Write a program to sum of the digits of the product of numbers from 1 to n.
 // For example: For, n = 5
