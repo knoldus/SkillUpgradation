@@ -1,0 +1,78 @@
+Problem 1 : Write a program using string interpolation and a list.
+For example:  if the list is List(10,20,30,40) output should be
+0 = 10
+1 = 20
+2 = 30
+
+  >>> def stringInterpolation(list: List[Int]): Unit = {
+    (0 until list.size).foreach(i => println(s"$i = ${list(i)}"))
+   }
+
+
+  Problem 2 Write a program to find the maximum element from list.
+  For example: List(1,5,2,9,7)
+  Output should be 9
+
+    @tailrec
+ >>>   def maxInList(list: List[Int], max: Int = Int.MinValue): Int = {
+      list match {
+        case head :: tail => if (head > max) {
+          maxInList(tail, head)
+        } else {
+          maxInList(tail, max)
+        }
+        case Nil          => max
+      }
+    }
+
+
+    Problem 3  Write  a program to get the nth Fibonacci number.
+    For example: Fibonacci series (0,1,1,2,3,5,8.....)
+    if n is 3 then it should return 2
+    if n is 4 then it should return 3
+
+   >>>  def nthFibonacci(n: Int): Int = {
+        @tailrec
+        def fibonacci(n: Int, pre: Int, next: Int): Int = {
+          if (n == 0) {
+            pre + next
+          } else {
+            fibonacci(n - 1, next, pre + next)
+          }
+        }
+
+        if (n == 0 || n == 1) {
+          n
+        } else {
+          fibonacci(n, -1, 1)
+        }
+      }
+
+
+    Problem 4 Write a program to sum of the digits of the product of numbers from 1 to n.
+    For example: For, n = 5
+    1*2*3*4*5 = 120
+    1+2+0 = 3
+
+ >>>  def sumOfDigitOfProduct(n: Int): Long = {
+
+    @tailrec
+    def digitProduct(n: Int, prod: Long = 1): Long = {
+      if (n == 1) {
+        prod
+      } else {
+        digitProduct(n - 1, prod * n)
+      }
+    }
+
+    @tailrec
+    def digitSum(n: Long, result: Long = 0): Long = {
+      if (n > 0) {
+        digitSum(n / 10, n % 10 + result)
+      } else {
+        result
+      }
+    }
+
+    digitSum(digitProduct(n))
+  }
