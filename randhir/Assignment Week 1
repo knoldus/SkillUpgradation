@@ -4,9 +4,8 @@ For example:  if the list is List(10,20,30,40) output should be
 1 = 20
 2 = 30
 
-  >>> def stringInterpolation(list: List[Int]): Unit = {
-    (0 until list.size).foreach(i => println(s"$i = ${list(i)}"))
-   }
+  >>>  def indexing(list: List[Int]): String = list.zipWithIndex.map { case (elem, index) => s"$index = $elem" }.mkString("\n")
+
 
 
   Problem 2 Write a program to find the maximum element from list.
