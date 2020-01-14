@@ -1,0 +1,89 @@
+Problem 1 : Write a program using string interpolation and a list.
+For example:  if the list is List(10,20,30,40) output should be 
+0 = 10
+1 = 20
+2 = 30
+
+object Prog1 {
+  def main(args: Array[String]): Unit = {
+    val myList = List(10, 20, 30, 40, 10)
+    for ((v, i) <- myList.zipWithIndex) {
+      println(i + " = " + v)
+    }
+  }
+}
+
+
+
+
+Problem 2 Write a program to find the maximum element from list.
+For example: List(1,5,2,9,7)
+Output should be 9
+
+object Prog2 {
+  def main(args: Array[String]): Unit = {
+    val myList = List(1, 5, 2, 9, 7)
+    println(myList.max)
+  }
+}
+
+
+
+
+Problem 3  Write  a program to get the nth Fibonacci number.
+For example: Fibonacci series (0,1,1,2,3,5,8.....)
+if n is 3 then it should return 2
+if n is 4 then it should return 3
+
+object Prog3 {
+
+  def main(args: Array[String]): Unit = {
+    println(fibo(0, 1, 6))
+  }
+
+  def fibo(a: Int, b: Int, n: Int): Int = {
+    def fiboHelper(a: Int, b: Int, acc: Int): Int = {
+      if (a < n) {
+        fiboHelper(b, a + b, a)
+      }
+      else acc
+    }
+
+    fiboHelper(a, b, 0)
+  }
+}
+
+Problem 4 Write a program to sum of the digits of the product of numbers from 1 to n.
+For example: For, n = 5
+1*2*3*4*5 = 120
+1+2+0 = 3 
+
+object Prog4 {
+
+  def main(args: Array[String]): Unit = {
+    val resOfFact = factorial(5)
+    println(resOfFact)
+    println(sumOfDigits(resOfFact))
+  }
+
+  def factorial(n: Int): BigInt = {
+    def factHelper(x: Int, accumulator: BigInt): BigInt =
+      if (x == 1) accumulator
+      else factHelper(x - 1, x * accumulator)
+
+    factHelper(n, 1)
+  }
+
+  def sumOfDigits(n: BigInt): BigInt = {
+    def sumHelper(x: BigInt, accumulator: BigInt): BigInt = {
+      if (x == 0) accumulator
+      else {
+        val i = x % 10
+        sumHelper(x / 10, accumulator + i)
+      }
+    }
+
+    sumHelper(n, 0)
+  }
+}
+
