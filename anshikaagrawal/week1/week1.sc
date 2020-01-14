@@ -21,19 +21,19 @@ Problem 2 Write a program to find the maximum element from list.
 Output should be 9*/
 
 def maximum(list: List[Int]):Any = {
-    if(list.isEmpty)
-        println("List is empty")
-    else{
-        @tailrec
-        def findMax(currentMax:Int = list.head, nextList:List[Int] = list.tail): Int ={
-            currentMax match {
-                case _ if nextList.isEmpty => currentMax
-                case _ if (currentMax < nextList.head) || (currentMax == nextList.head) => findMax(nextList.head, nextList.tail)
-                case _ => findMax(currentMax, nextList.tail)
-            }
-        }
-        findMax()
+  if(list.isEmpty)
+    println("List is empty")
+  else{
+    @tailrec
+    def findMax(currentMax:Int = list.head, nextList:List[Int] = list.tail): Int ={
+      currentMax match {
+        case _ if nextList.isEmpty => currentMax
+        case _ if (currentMax < nextList.head) || (currentMax == nextList.head) => findMax(nextList.head, nextList.tail)
+        case _ => findMax(currentMax, nextList.tail)
+      }
     }
+    findMax()
+  }
 }
 
 maximum(List(1,5,2,9,7))
@@ -45,16 +45,16 @@ if n is 3 then it should return 2
 if n is 4 then it should return 3*/
 
 def nthFibonacci(n:Int):Int = {
-    @tailrec
-    def findElement(currentIndex : Int, prev : Int = 0, next : Int = 1) : Int =
-    {
-        currentIndex match {
-            case 0 => prev
-            case 1 => next
-            case _ => findElement(currentIndex -1, next, prev + next)
-        }
+  @tailrec
+  def findElement(currentIndex : Int, prev : Int = 0, next : Int = 1) : Int =
+  {
+    currentIndex match {
+      case 0 => prev
+      case 1 => next
+      case _ => findElement(currentIndex -1, next, prev + next)
     }
-    findElement(n)
+  }
+  findElement(n)
 }
 
 nthFibonacci(4)
@@ -67,22 +67,22 @@ For example: For, n = 5
 1+2+0 = 3*/
 
 def FindProductSum(number:Int): Int = {
-    @tailrec
-    def product(number:Int,multiply:Int=1):Int={
-        number match{
-            case 0 => multiply
-            case 1 => multiply
-            case _ => product(number-1,multiply*number)
-        }
+  @tailrec
+  def product(number:Int,multiply:Int=1):Int={
+    number match{
+      case 0 => multiply
+      case 1 => multiply
+      case _ => product(number-1,multiply*number)
     }
-    @tailrec
-    def sum(digit:Int=0,currentSum:Int=0,productOutput:Int=product(number)):Int= {
-        if(productOutput > 0)
-            sum(productOutput % 10, currentSum + digit, productOutput / 10)
-        else
-            currentSum+ digit
-    }
-    sum()
+  }
+  @tailrec
+  def sum(digit:Int=0,currentSum:Int=0,productOutput:Int=product(number)):Int= {
+    if(productOutput > 0)
+      sum(productOutput % 10, currentSum + digit, productOutput / 10)
+    else
+      currentSum+ digit
+  }
+  sum()
 }
 
 FindProductSum(5)
