@@ -1,0 +1,5 @@
+-> Count the frequency of the character in the string & print it the same order.
+-> Remove duplicate character from the string & print the remaining string in the same order.
+-> Remove vowels from the string & print the remaining string in the same order.
+-> Extract all the alphanumeric words with the constant "alphanumeric" from a given string. 
+   for example, if the given string is "I am no1 programmar at 2nd street", the output should be: "I am alphanumeric programmar at alphanumeric street"
