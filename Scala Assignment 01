@@ -20,18 +20,84 @@ For example:  if the list is List(10,20,30,40) output should be
 1 = 20
 2 = 30
 
+Solution:
+
+object Problem1 extends App {
+
+  def stringInterpolation(list: List[Int]): Unit = {
+    list.foreach(element => println(s"${list.indexOf(element)} = $element"))
+  }
+
+  stringInterpolation(List(10,20,30,40))
+}
 
 Problem 2 Write a program to find the maximum element from list.
 For example: List(1,5,2,9,7)
 Output should be 9
+
+object Problem2 extends App {
+
+  def maximumElement(list: List[Int]): Int = {
+    def inner(max: Int, remainingList: List[Int]): Int = {
+
+      remainingList match {
+        case Nil => max
+        case head :: tail if head > max => inner(head, tail)
+        case _ :: tail => inner(max, tail)
+      }
+    }
+    inner(0, list)
+  }
+
+  println(maximumElement(List(1,5,2,9,7)))
+}
 
 Problem 3  Write  a program to get the nth Fibonacci number.
 For example: Fibonacci series (0,1,1,2,3,5,8.....)
 if n is 3 then it should return 2
 if n is 4 then it should return 3
 
+object Problem3 extends App {
+
+  def nthFibonacciNumber(n: Int): Int = {
+    def inner(n: Int, first: Int = 0, next: Int = 1): Int = n match {
+      case 0 => first
+      case 1 => next
+      case _ => inner(n-1, next, first+ next)
+    }
+    inner(n)
+  }
+
+  println(nthFibonacciNumber(4))
+}
+
 Problem 4 Write a program to sum of the digits of the product of numbers from 1 to n.
 For example: For, n = 5
 1*2*3*4*5 = 120
-1+2+0 = 3 
+1+2+0 = 3
 
+object Problem4 extends App {
+
+ def tailRecFact(n: Int): Int = {
+   @tailrec
+   def inner(a: Int, res: Int): Int ={
+      if(a == 1)
+        res
+      else
+        inner(a-1, a * res)
+    }
+    inner(n, 1)
+  }
+
+  def sumOfDigits(n: Int): Int = {
+    def inner(n: Int, s: Int): Int = {
+      if(n <= 0)
+        s
+      else
+        inner(n/10, s + n%10)
+    }
+    inner(n, 0)
+  }
+
+  println(sumOfDigits(tailRecFact(5)))
+}
