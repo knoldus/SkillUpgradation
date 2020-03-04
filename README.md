@@ -9,4 +9,3 @@ Assignments Repository
 |--- <week-#>
     |-- Scala Assignment Questions
     |-- <week-#>.sc
-```
