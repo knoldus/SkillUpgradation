@@ -1,0 +1,85 @@
+//Count the frequency of the character in the string & print it the same order.
+
+val str = "This is test string"
+
+def countChars(str: String): String = {
+
+  def countCharsHelper(str:String, strResult: String, index: Int): String = {
+    index match {
+      case currIndex if currIndex < str.length => str.charAt(currIndex) match {
+        case ' ' => countCharsHelper(str, strResult + " ", index + 1)
+        case x: Char => countCharsHelper(str, strResult + str.charAt(index) + str.count(_ == x),
+          index + 1)
+      }
+      case _ => strResult
+    }
+  }
+
+  countCharsHelper(str, "", 0)
+}
+
+countChars(str)
+
+//Remove duplicate character from the string &
+// print the remaining string in the same order.
+
+def removeDuplicateChars(str: String): String = {
+
+  def removeDuplicateHelper(str:String, strResult:String, index:Int):String = {
+    if(index < str.length){
+    str.charAt(index) match {
+      case x: Char if strResult.contains(x) => removeDuplicateHelper(str, strResult, index + 1)
+      case x: Char => removeDuplicateHelper(str, strResult+x, index+1)
+    }
+    }
+    else{
+      strResult
+    }
+  }
+
+  removeDuplicateHelper(str, "", 0)
+}
+removeDuplicateChars(str)
+
+//Remove vowels from the string & print the remaining string in the same order.
+
+def removeVowels(str: String): String = {
+
+  def removeVowelsHelper(str:String, strResult:String, index:Int):String = {
+    if(index < str.length){
+    str.charAt(index) match {
+      case 'a'|'e'|'i'|'o'|'u' => removeVowelsHelper(str, strResult, index + 1)
+      case x: Char => removeVowelsHelper(str, strResult+x, index+1)
+    }
+    }
+    else{
+      strResult
+    }
+  }
+
+  removeVowelsHelper(str, "", 0)
+}
+removeVowels(str)
+
+//Extract all the alphanumeric words with the constant "alphanumeric"
+// from a given string. for example, if the given string is
+// "I am no1 programmar at 2nd street",
+// the output should be: "I am alphanumeric programmar at alphanumeric street"
+
+def removeAlphaNumeric(str: String): String = {
+  def removeAlphaNumericHelper(strList:List[String], strResult:String)
+  : String = {
+    strList match {
+      case word :: tail if word.exists(_.isDigit) =>
+        removeAlphaNumericHelper(tail, strResult + " alphanumeric ")
+      case word :: tail =>
+        removeAlphaNumericHelper(tail, strResult + " " + word)
+      case Nil => strResult
+    }
+  }
+
+  removeAlphaNumericHelper(str.split(" ").toList, "")
+}
+
+val strAlpha =  "This is no3 and 9th planet in solar system"
+removeAlphaNumeric(strAlpha)
