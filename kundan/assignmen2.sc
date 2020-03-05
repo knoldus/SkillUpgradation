@@ -1,17 +1,12 @@
-import scala.collection.mutable
 
 object Assignment2 extends App {
 
   //problem 1: Count the frequency of the character in the string & print it the same order.
   def characterFrequency(string: String): Unit = {
 
-    val lhs: mutable.LinkedHashSet[Char] = new mutable.LinkedHashSet()
     val mapping = string.toList.filter(_.isLetter).groupBy(letter => letter)
       .map(keyLetter => keyLetter._1 -> keyLetter._2.size)
-    for (letterIndex <- 0 until string.length) {
-      lhs.add(string.charAt(letterIndex))
-    }
-    for (letter <- lhs) {
+    for (letter <- string.toSeq.distinct) {
       println(letter + "->" + mapping.getOrElse(letter, 0))
     }
   }
@@ -20,15 +15,7 @@ object Assignment2 extends App {
 
   // Problem 2: Remove duplicate character from the string & print the remaining string in the same order.
   def removeDuplicateCharacter(string: String): Unit = {
-
-    val lhs: mutable.LinkedHashSet[Char] = new mutable.LinkedHashSet()
-    for (letterIndex <- 0 until string.length) {
-      lhs.add(string.charAt(letterIndex))
-    }
-    for (letter <- lhs) {
-      println(letter)
-    }
-
+    println(string.toList.distinct.mkString(""))
   }
   removeDuplicateCharacter("datalakehouse")
 
